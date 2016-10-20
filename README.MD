@@ -1,0 +1,1 @@
+Phoca Photo is Joomla! CMS extension. Plugin displaying photos/images of Phoca Gallery component in responsive way in article.

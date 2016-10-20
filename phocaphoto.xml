@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension group="content" method="upgrade" type="plugin" version="3">
+	<name>plg_content_phocaphoto</name>
+	<creationDate>20/10/2016</creationDate>
+	<author>Jan Pavelka (www.phoca.cz)</author>
+	<authorEmail></authorEmail>
+	<authorUrl>www.phoca.cz</authorUrl>
+	<copyright>Jan Pavelka</copyright>
+	<license>GNU/GPL</license>
+	<version>3.0.0</version>
+	
+	<description>PLG_CONTENT_PHOCAPHOTO_DESCRIPTION</description>
+	
+	<files>
+		<filename plugin="phocaphoto">phocaphoto.php</filename>
+		<filename >index.html</filename>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_content_phocaphoto.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_content_phocaphoto.sys.ini</language>
+	</languages>
+	
+	<administration>
+		<languages>
+			<language tag="en-GB">language/en-GB/en-GB.plg_content_phocaphoto.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.plg_content_phocaphoto.sys.ini</language>
+		</languages>
+	</administration>
+	
+	<config>
+		<fields name="params" addfieldpath="/plugins/content/phocaopengraph/models/fields">
+			<fieldset name="main" label="PLG_CONTENT_PHOCA_OPEN_GRAPH_MAIN_OPTIONS">
+	
+	<field name="columns_cats" type="list" class="btn-group btn-group-yesno" default="3" label="PLG_CONTENT_PHOCAPHOTO_FIELD_NR_COLUMNS_CATEGORIES_LABEL" description="PLG_CONTENT_PHOCAPHOTO_FIELD_NR_COLUMNS_CATEGORIES_DESC">
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="6">6</option>
+	<option value="12">12</option>
+</field>
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>

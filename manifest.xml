@@ -1,0 +1,22 @@
+<updates>
+	<update>
+		<name><![CDATA[ Phoca Photo Content Plugin ]]></name>
+		<description><![CDATA[ Phoca Photo Content Plugin is a Joomla! plugin which display images of Phoca Gallery in article styled by lightweight way (the same way like Phoca Photo component). The plugin is a lite and simple alternative to Phoca Gallery Content plugin. To display images in article quickly and easily. ]]></description>
+		<element>phocaphoto</element>
+		<folder>content</folder>
+		<type>plugin</type>
+		<version>3.0.1</version>
+		<infourl title="Phoca Photo Content Plugin 3.0.1">https://www.phoca.cz/</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaPhotoPlugin/releases/download/3.0.1/plg_content_phocaphoto_v3.0.1.zip</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
+		<maintainerurl>https://www.phoca.cz/</maintainerurl>
+		<section>Updates</section>
+		<targetplatform name="joomla" version="3.9"/>
+		<client>0</client>
+	</update>
+</updates>

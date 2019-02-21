@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension group="content" method="upgrade" type="plugin" version="3">
+<extension type="plugin" group="content" method="upgrade" version="3">
 	<name>plg_content_phocaphoto</name>
-	<creationDate>20/10/2016</creationDate>
 	<author>Jan Pavelka (www.phoca.cz)</author>
+	<creationDate>21/02/2019</creationDate>
 	<authorEmail></authorEmail>
-	<authorUrl>www.phoca.cz</authorUrl>
+	<authorUrl>https://www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
 	<license>GNU/GPL</license>
-	<version>3.0.0</version>
-	
+	<version>3.0.1</version>
 	<description>PLG_CONTENT_PHOCAPHOTO_DESCRIPTION</description>
-	
+	<projectName>PhocaPhotoPlugin</projectName>
+
+	<media destination="plg_content_phocaphoto" folder="media">
+		<folder>css</folder>
+		<filename>index.html</filename>
+	</media>
+
 	<files>
+		<filename plugin="phocaphoto">index.html</filename>
 		<filename plugin="phocaphoto">phocaphoto.php</filename>
-		<filename >index.html</filename>
 	</files>
-	
+
 	<languages>
 		<language tag="en-GB">language/en-GB/en-GB.plg_content_phocaphoto.ini</language>
 		<language tag="en-GB">language/en-GB/en-GB.plg_content_phocaphoto.sys.ini</language>
 	</languages>
-	
+
 	<administration>
 		<languages>
 			<language tag="en-GB">language/en-GB/en-GB.plg_content_phocaphoto.ini</language>
@@ -32,16 +37,30 @@
 		<fields name="params" addfieldpath="/plugins/content/phocaopengraph/models/fields">
 			<fieldset name="main" label="PLG_CONTENT_PHOCA_OPEN_GRAPH_MAIN_OPTIONS">
 	
-	<field name="columns_cats" type="list" class="btn-group btn-group-yesno" default="3" label="PLG_CONTENT_PHOCAPHOTO_FIELD_NR_COLUMNS_CATEGORIES_LABEL" description="PLG_CONTENT_PHOCAPHOTO_FIELD_NR_COLUMNS_CATEGORIES_DESC">
+	
+	<!--<field name="columns_cats" type="list" class="btn-group btn-group-yesno" default="3" label="PLG_CONTENT_PHOCAPHOTO_FIELD_NR_COLUMNS_CATEGORIES_LABEL" description="PLG_CONTENT_PHOCAPHOTO_FIELD_NR_COLUMNS_CATEGORIES_DESC">
 	<option value="1">1</option>
 	<option value="2">2</option>
 	<option value="3">3</option>
 	<option value="4">4</option>
 	<option value="6">6</option>
 	<option value="12">12</option>
+</field>-->
+
+<field name="display_title" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_CONTENT_PHOCAPHOTO_FIELD_DISPLAY_IMAGE_TITLE_LABEL" description="PLG_CONTENT_PHOCAPHOTO_FIELD_DISPLAY_IMAGE_TITLE_DESC">
+	<option value="0">PLG_CONTENT_PHOCAPHOTO_NO</option>
+	<option value="1">PLG_CONTENT_PHOCAPHOTO_YES</option>
 </field>
 
+<field name="detail_window" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_PHOCAPHOTO_FIELD_DETAIL_WINDOW_LABEL" description="PLG_CONTENT_PHOCAPHOTO_FIELD_DETAIL_WINDOW_DESC">
+	<option value="1">PLG_CONTENT_PHOCAPHOTO_PHOTOSWIPE</option>
+	<option value="2">PLG_CONTENT_PHOCAPHOTO_PRETTYPHOTO</option>
+</field>
 			</fieldset>
 		</fields>
 	</config>
+
+	<updateservers>
+		<server type="extension" name="PLG_CONTENT_PHOCAPHOTO" priority="1"><![CDATA[https://raw.githubusercontent.com/PhocaCz/PhocaPhotoPlugin/master/manifest.xml]]></server>
+	</updateservers>
 </extension>

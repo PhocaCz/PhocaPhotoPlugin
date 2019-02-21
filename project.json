@@ -1,0 +1,18 @@
+{
+	"author": "Jan Pavelka (www.phoca.cz)",
+	"authorUrl": "https://www.phoca.cz",
+	"copyright": "Jan Pavelka",
+	"license": "GNU/GPL",
+	"projectName": "PhocaPhotoPlugin",
+	"extensionName": "Phoca Photo Content Plugin",
+	"projectInitials" : "PH",				  
+	"description": "Phoca Photo Content Plugin is a Joomla! plugin which display images of Phoca Gallery in article styled by lightweight way (the same way like Phoca Photo component). The plugin is a lite and simple alternative to Phoca Gallery Content plugin. To display images in article quickly and easily.",
+	"projectUrl": "https://www.phoca.cz/phoca-photo-content-plugin",
+	"projectDocumentationUrl": "https://www.phoca.cz/documentation/category/130-phoca-photo-plugin",
+	"projectMainComponent": "Phoca Photo",
+	"projectMainComponentInfoUrl": "https://www.phoca.cz/project/phocaphoto-joomla-gallery",
+	"projectDemo" : {
+		"Joomla! Demo": "https://www.phoca.cz/phocacart/"
+	},
+	"projectColor": "#C92C75"
+}

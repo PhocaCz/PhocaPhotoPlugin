@@ -18,6 +18,7 @@
 
 	<files>
 		<filename plugin="phocaphoto">index.html</filename>
+		<filename plugin="phocaphoto">manifest.xml</filename>
 		<filename plugin="phocaphoto">phocaphoto.php</filename>
 	</files>
 

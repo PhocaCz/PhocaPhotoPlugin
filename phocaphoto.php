@@ -9,6 +9,11 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License version 2 or later;
  */
 
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
+
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport( 'joomla.plugin.plugin' );
 
@@ -28,12 +33,17 @@ class plgContentPhocaPhoto extends JPlugin
 
 	public function onContentPrepare($context, &$article, &$params, $page = 0) {
 
-		$app 	= JFactory::getApplication();
+		$app 	= Factory::getApplication();
 		$view	= $app->input->get('view');
 		if ($view == 'tag') { return; }
 
 		if ($context == 'com_finder.indexer'){
 			return true;
+		}
+
+		// Not an article (plugin is used outside com_content
+		if (!isset($article->id)) {
+			$article->id = 0;
 		}
 
 		// Include Phoca Photo
@@ -49,8 +59,8 @@ class plgContentPhocaPhoto extends JPlugin
         }
 
 
-		$db 			= JFactory::getDBO();
-		$document		= JFactory::getDocument();
+		$db 			= Factory::getDBO();
+		$document		= Factory::getDocument();
 		//$component	= 'com_phocaphoto';
 		//$paramsC		= JComponentHelper::getParams($component) ;
 		//$param		= (int)$this->params->get( 'medium_image_width', 100 );
@@ -63,14 +73,14 @@ class plgContentPhocaPhoto extends JPlugin
 		$matches 		= array();
 		$count_matches	= preg_match_all($regex_all,$article->text,$matches,PREG_OFFSET_CAPTURE | PREG_PATTERN_ORDER);
 
-		$lang = JFactory::getLanguage();
+		$lang = Factory::getLanguage();
 		$lang->load('com_phocagallery');
 
 
 	// Start if count_matches
 	if ($count_matches != 0) {
 
-		JHTML::stylesheet( 'media/plg_content_phocaphoto/css/phocaphoto.css' );
+		HtmlHelper::stylesheet( 'media/plg_content_phocaphoto/css/phocaphoto.css' );
 
 
         if (!class_exists('PhocaGalleryLoader')) {
@@ -80,8 +90,8 @@ class plgContentPhocaPhoto extends JPlugin
         phocagalleryimport('phocagallery.path.path');
         phocagalleryimport('phocagallery.file.filethumbnail');
 		phocagalleryimport('phocagallery.render.renderdetailwindow');
-		
-		$paramsC			= JComponentHelper::getParams('com_phocagallery');
+
+		$paramsC			= ComponentHelper::getParams('com_phocagallery');
 		$large_image_width	= (int)$paramsC->get( 'large_image_width', 640 );
 		$large_image_height	= (int)$paramsC->get( 'large_image_height', 480 );
 
@@ -149,10 +159,10 @@ class plgContentPhocaPhoto extends JPlugin
 					//$path = PhocaPhotoHelper::getPath();
 
 					if ((int)$this->_plugin_number < 2) {
-						JHtml::_('jquery.framework', false);
-						
+						HtmlHelper::_('jquery.framework', false);
+
 						if ($detail_window == 2) {
-							JHTML::stylesheet( 'media/com_phocaphoto/js/prettyphoto/css/prettyPhoto.css' );
+							HtmlHelper::stylesheet( 'media/com_phocaphoto/js/prettyphoto/css/prettyPhoto.css' );
 							$document->addScript(JURI::root(true).'/media/com_phocaphoto/js/prettyphoto/js/jquery.prettyPhoto.js');
 
 							$js = "\n". 'jQuery(document).ready(function(){
@@ -163,9 +173,9 @@ class plgContentPhocaPhoto extends JPlugin
 							$document->addScriptDeclaration($js);
 						} else {
 
-							$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/photoswipe/css/photoswipe.css');
-							$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/photoswipe/css/default-skin/default-skin.css');
-							$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/photoswipe/css/photoswipe-style.css');
+							$document->addStyleSheet(Uri::root(true).'/media/com_phocagallery/js/photoswipe/css/photoswipe.css');
+							$document->addStyleSheet(Uri::root(true).'/media/com_phocagallery/js/photoswipe/css/default-skin/default-skin.css');
+							$document->addStyleSheet(Uri::root(true).'/media/com_phocagallery/js/photoswipe/css/photoswipe-style.css');
 						}
 					}
 
@@ -186,15 +196,15 @@ class plgContentPhocaPhoto extends JPlugin
 
 					$o .= '<div class="ph-photo-plugin-container">';
 					///* id="pg-msnr-container-a'.(int)$article->id . '-p'. (int)$this->_plugin_number.'"
-					
+
 					$class = '';
 					if ($display_title == 1) {
 						$class = ' ph-incl-title';
 					}
-					
+
 					foreach ($images as $k => $v) {
 
-					
+
 						$o .= '<div class="ph-photo-plugin-box'.$class.'">';
 						$o .= '<div class="ph-photo-plugin-image-container">';
 						$o .= '<div class="ph-photo-plugin-image-box">';
@@ -237,17 +247,17 @@ class plgContentPhocaPhoto extends JPlugin
 							if (isset($v->extw) && $v->extw != '') {
 								$extWA = explode(',', $v->extw);
 								if (isset($extWA[0])) { $w = $extWA[0];}
-							}	
-							
+							}
+
 							if (isset($v->exth) && $v->exth != '') {
 								$extHA = explode(',', $v->exth);
 								if (isset($extHA[0])) { $h = $extHA[0];}
-							} 
-							
-							
-							
+							}
+
+
+
 							if ($detail_window == 2) {
-								
+
 								if ($count == 1) {
 									$o .= '<a href="'.$imageL.'" rel="prettyPhoto[\'pp_gal_plugin'.(int)$this->_plugin_number.'\']">';
 								} else {
@@ -255,7 +265,7 @@ class plgContentPhocaPhoto extends JPlugin
 								}
 
 							} else {
-								$o .= '<a class="photoswipe-button" href="'.$imageL.'" itemprop="contentUrl" data-size="'.$w.'x'.$h.'" >';
+								$o .= '<a class="pg-photoswipe-button" href="'.$imageL.'" itemprop="contentUrl" data-size="'.$w.'x'.$h.'" >';
 							}
 
 						}
@@ -280,7 +290,7 @@ class plgContentPhocaPhoto extends JPlugin
 						if ($display_title == 1) {
 							$o .= '<div class="ph-photo-plugin-image-title">'.$v->title.'</div>';
 						}
-						
+
 						$o .= '</div>';// end ph-photo-plugin-box
 
 						/*if ($count == 1) {
@@ -292,7 +302,7 @@ class plgContentPhocaPhoto extends JPlugin
 					$o .= '</div>';// end ph-photo-plugin-container
 
 					$o .= '</div>';// end pswp
-					
+
 					if ($i == ($count_matches - 1) && $detail_window == 1) {
 						// Must be at the end
 						$o .= PhocaGalleryRenderDetailWindow::loadPhotoswipeBottom(1,1);
@@ -304,7 +314,7 @@ class plgContentPhocaPhoto extends JPlugin
 					$o .= '</div>';
 				}*/
 
-				
+
 				$article->text = preg_replace($regex_all, $o, $article->text, 1);
 			}
 			return true;

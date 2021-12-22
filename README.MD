@@ -2,7 +2,7 @@
 
 
 
-![Phoca Photo Content Plugin](https://github.com/PhocaCz/PhocaPhotoPlugin/blob/master/phocaphoto.png)
+![Phoca Photo Content Plugin](https://github.com/PhocaCz/PhocaPhotoPlugin/blob/master/phocaphoto.png?raw=true)
 
 # Phoca Photo Content Plugin
 
@@ -23,6 +23,8 @@ Phoca Photo Content Plugin is a Joomla! plugin which display images of Phoca Gal
 ## Documentation
 
 [Documentation](https://www.phoca.cz/documentation/category/130-phoca-photo-plugin)
+
+
 
 
 
@@ -50,9 +52,13 @@ Phoca Photo Content Plugin is a Joomla! plugin which display images of Phoca Gal
 
 
 
-## Version
+## Version (Joomla! 3.x)
 
 3.0.1
+
+## Version (Joomla! 4.x)
+
+4.0.0
 
 
 

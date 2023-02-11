@@ -2,12 +2,12 @@
 <extension type="plugin" group="content" method="upgrade" version="4.0">
 	<name>plg_content_phocaphoto</name>
 	<author>Jan Pavelka (www.phoca.cz)</author>
-	<creationDate>23/12/2021</creationDate>
+	<creationDate>29/05/2022</creationDate>
 	<authorEmail></authorEmail>
 	<authorUrl>https://www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
 	<license>GNU/GPL</license>
-	<version>4.0.0</version>
+	<version>4.0.1</version>
 	<description>PLG_CONTENT_PHOCAPHOTO_DESCRIPTION</description>
 	<projectName>PhocaPhotoPlugin</projectName>
 
@@ -19,6 +19,7 @@
 	<files>
 		<filename plugin="phocaphoto">phocaphoto.php</filename>
 		<filename plugin="phocaphoto">index.html</filename>
+		<filename plugin="phocaphoto">manifest.xml</filename>
 	</files>
 
 	<languages>

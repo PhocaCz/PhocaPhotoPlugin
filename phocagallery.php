@@ -18,7 +18,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport( 'joomla.plugin.plugin' );
 
 
-class plgContentPhocaPhoto extends JPlugin
+class plgContentPhocaGallery extends JPlugin
 {
 	var $_plugin_number	= 0;
 
@@ -46,12 +46,6 @@ class plgContentPhocaPhoto extends JPlugin
 			$article->id = 0;
 		}
 
-		// Include Phoca Photo
-      /*  if (!JComponentHelper::isEnabled('com_phocaphoto', true)) {
-            echo '<div class="alert alert-danger">Phoca Photo Error: Phoca Photo component is not installed or not published on your system</div>';
-            return;
-        }*/
-
 		// Include Phoca Gallery
         if (!JComponentHelper::isEnabled('com_phocagallery', true)) {
             echo '<div class="alert alert-danger">Phoca Gallery Error: Phoca Gallery component is not installed or not published on your system</div>';
@@ -68,8 +62,8 @@ class plgContentPhocaPhoto extends JPlugin
 		$display_title 	= $this->params->get('display_title', 1);
 
 		// Start Plugin
-		$regex_one		= '/({phocaphoto\s*)(.*?)(})/si';
-		$regex_all		= '/{phocaphoto\s*.*?}/si';
+		$regex_one		= '/({phocagallery\s*)(.*?)(})/si';
+		$regex_all		= '/{phocagallery\s*.*?}/si';
 		$matches 		= array();
 		$count_matches	= preg_match_all($regex_all,$article->text,$matches,PREG_OFFSET_CAPTURE | PREG_PATTERN_ORDER);
 
@@ -80,7 +74,7 @@ class plgContentPhocaPhoto extends JPlugin
 	// Start if count_matches
 	if ($count_matches != 0) {
 
-		HtmlHelper::stylesheet( 'media/plg_content_phocaphoto/css/phocaphoto.css' );
+		HtmlHelper::stylesheet( 'media/plg_content_phocagallery/css/phocagallery.css' );
 
 
         if (!class_exists('PhocaGalleryLoader')) {
@@ -106,9 +100,9 @@ class plgContentPhocaPhoto extends JPlugin
 			$max	= 0;
 
 			// Get plugin parameters
-			$phocaphoto	= $matches[0][$i][0];
-			preg_match($regex_one,$phocaphoto,$phocaphoto_parts);
-			$parts			= explode("|", $phocaphoto_parts[2]);
+			$phocagallery	= $matches[0][$i][0];
+			preg_match($regex_one,$phocagallery,$phocagallery_parts);
+			$parts			= explode("|", $phocagallery_parts[2]);
 			$values_replace = array ("/^'/", "/'$/", "/^&#39;/", "/&#39;$/", "/<br \/>/");
 
 			foreach($parts as $key => $value) {
@@ -165,7 +159,7 @@ class plgContentPhocaPhoto extends JPlugin
 					if ((int)$this->_plugin_number < 2) {
 						HtmlHelper::_('jquery.framework', false);
 
-						if ($detail_window == 2) {
+						/*if ($detail_window == 2) {
 							HtmlHelper::stylesheet( 'media/com_phocaphoto/js/prettyphoto/css/prettyPhoto.css' );
 							$document->addScript(JURI::root(true).'/media/com_phocaphoto/js/prettyphoto/js/jquery.prettyPhoto.js');
 
@@ -175,12 +169,12 @@ class plgContentPhocaPhoto extends JPlugin
 							$js .= '  });
 							});'."\n";
 							$document->addScriptDeclaration($js);
-						} else {
+						} else {*/
 
 							$document->addStyleSheet(Uri::root(true).'/media/com_phocagallery/js/photoswipe/css/photoswipe.css');
 							$document->addStyleSheet(Uri::root(true).'/media/com_phocagallery/js/photoswipe/css/default-skin/default-skin.css');
 							$document->addStyleSheet(Uri::root(true).'/media/com_phocagallery/js/photoswipe/css/photoswipe-style.css');
-						}
+						/*}*/
 					}
 
 					/*$nc = (int)$columns_cats;
@@ -198,7 +192,7 @@ class plgContentPhocaPhoto extends JPlugin
 
 					$o .= '<div id="pg-msnr-container-a'.(int)$article->id . '-p'. (int)$this->_plugin_number.'" class="pg-photoswipe pg-msnr-container" itemscope itemtype="http://schema.org/ImageGallery">';
 
-					$o .= '<div class="ph-photo-plugin-container">';
+					$o .= '<div class="ph-gallery-plugin-container">';
 					///* id="pg-msnr-container-a'.(int)$article->id . '-p'. (int)$this->_plugin_number.'"
 
 					$class = '';
@@ -209,9 +203,9 @@ class plgContentPhocaPhoto extends JPlugin
 					foreach ($images as $k => $v) {
 
 
-						$o .= '<div class="ph-photo-plugin-box'.$class.'">';
-						$o .= '<div class="ph-photo-plugin-image-container">';
-						$o .= '<div class="ph-photo-plugin-image-box">';
+						$o .= '<div class="ph-gallery-plugin-box'.$class.'">';
+						$o .= '<div class="ph-gallery-plugin-image-container">';
+						$o .= '<div class="ph-gallery-plugin-image-box">';
 
 					/*	if ($count == 1) {
 							$o .= '<div class="col-sm-6 col-md-'.$nw.'">';
@@ -260,7 +254,7 @@ class plgContentPhocaPhoto extends JPlugin
 
 
 
-							if ($detail_window == 2) {
+							/*if ($detail_window == 2) {
 
 								if ($count == 1) {
 									$o .= '<a href="'.$imageL.'" rel="prettyPhoto[\'pp_gal_plugin'.(int)$this->_plugin_number.'\']">';
@@ -268,9 +262,9 @@ class plgContentPhocaPhoto extends JPlugin
 									$o .= '<a href="'.$imageL.'" rel="prettyPhoto">';
 								}
 
-							} else {
+							} else {*/
 								$o .= '<a class="pg-photoswipe-button" href="'.$imageL.'" itemprop="contentUrl" data-size="'.$w.'x'.$h.'" >';
-							}
+							/*}*/
 
 						}
 
@@ -288,14 +282,14 @@ class plgContentPhocaPhoto extends JPlugin
 						}
 						$o .= '</figure>';
 
-						$o .= '</div>'; // end ph-photo-plugin-image-box
+						$o .= '</div>'; // end ph-gallery-plugin-image-box
 
-						$o .= '</div>';// end ph-photo-plugin-image-container
+						$o .= '</div>';// end ph-gallery-plugin-image-container
 						if ($display_title == 1) {
-							$o .= '<div class="ph-photo-plugin-image-title">'.$v->title.'</div>';
+							$o .= '<div class="ph-gallery-plugin-image-title">'.$v->title.'</div>';
 						}
 
-						$o .= '</div>';// end ph-photo-plugin-box
+						$o .= '</div>';// end ph-gallery-plugin-box
 
 						/*if ($count == 1) {
 							$o .= '</div>'; // end column
@@ -303,7 +297,7 @@ class plgContentPhocaPhoto extends JPlugin
 
 					}
 					//$o .= '</div>';
-					$o .= '</div>';// end ph-photo-plugin-container
+					$o .= '</div>';// end ph-gallery-plugin-container
 
 					$o .= '</div>';// end pswp
 

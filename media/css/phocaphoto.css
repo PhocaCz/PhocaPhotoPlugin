@@ -53,7 +53,8 @@
 
 .ph-photo-plugin-image-box a img {
 	height: auto;
-	width: auto;
+	/*width: auto;*/
+	width: 100%;
 	max-width: inherit;
 	margin: auto;
 }

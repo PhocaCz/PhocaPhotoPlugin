@@ -58,7 +58,7 @@ Phoca Photo Content Plugin is a Joomla! plugin which display images of Phoca Gal
 
 ## Version (Joomla! 4.x)
 
-4.0.1
+4.0.2
 
 
 
